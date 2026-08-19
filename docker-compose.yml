@@ -26,10 +26,14 @@ services:
   api:
     build: ./api
     restart: unless-stopped
-    env_file: .env
     environment:
       - PORT=3000            # internal port (nginx proxies here) — do not change
       - DATA_DIR=/data
+      - RP_ID=${RP_ID:-opengym.cristianfieiras.com}
+      - ORIGIN=${ORIGIN:-https://opengym.cristianfieiras.com}
+      - RP_NAME=${RP_NAME:-openGym}
+      - ADMIN_UIDS=${ADMIN_UIDS:-}
+      - INVITE_ONLY=${INVITE_ONLY:-}
     volumes:
       - ./data:/data         # users, passkeys, per-user state, session secret — BACK THIS UP
 
